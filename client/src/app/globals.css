@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --header-height: 50px;
+    --search-bar-height: 75px;
+    --padding: 5px
+}
+
+
+@layer base {
+    body {
+        background-color: #e6e6ff
+    }
+
+    button,
+    input
+    {
+        @apply border-none outline-none bg-transparent
+    }
+    select{
+        @apply w-20   border-2 border-solid border-black
+    }
+    select:focus{
+        @apply border-sky-500
+    }
+}
+
+@layer components {
+    .header {
+        @apply sticky top-0 w-full backdrop-blur-md shadow-lg z-50; 
+        height: var(--header-height);
+        background-color: rgba(249, 249, 249, 0.428);
+        padding: var(--padding);
+    }
+
+    .search-page {
+        display: grid;
+        grid-template-columns: 25% 1fr;
+        overflow: hidden auto;
+     }
+
+    .search-bar {
+        @apply w-full  flex items-center justify-center backdrop-blur-md z-40;
+        
+        height: var(--search-bar-height);
+    }
+
+    .search-input {
+        @apply w-3/4  bg-white rounded-lg p-3 focus:ring-2 focus:ring-sky-500 shadow-lg;
+    }
+   
+    .filter-container{
+        @apply sticky p-3 min-w-64   ;
+        top: var(--header-height);
+        height: calc(100vh - var(--header-height));
+    }
+    .loading{
+        @apply w-14 h-10 gap-1 flex justify-center items-center  rounded-full bg-white ;
+      
+    }
+    .loading-dot{
+        @apply   rounded-full bg-black inline-block ;
+        width: 6px;
+        height: 10px;
+        animation-name: loadingDotAnime ;
+        animation-duration: 0.6s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+       
+    }
+    .movie-card{
+       @apply  h-40  p-2 rounded-lg overflow-hidden bg-white grid gap-3 ;
+       grid-template-columns: min-content 1fr;
+    }
+
+    .poster_image_movie{
+       @apply relative aspect-square rounded-md shadow-md overflow-hidden ;
+       width: 150px;
+       height: 150px;
+    }
+    .movie-overview{
+        @apply font-semibold my-2 ;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        line-height: 16px;
+        max-height: 32px; 
+        -webkit-line-clamp: 2; 
+        -webkit-box-orient: vertical;
+    }
+}
+
+@keyframes loadingDotAnime{
+    0%,100% {
+       height: 10px;
+    }
+    50%{
+        height: 28px;
+
+
+    }
+}
